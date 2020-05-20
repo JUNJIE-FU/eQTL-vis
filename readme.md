@@ -19,6 +19,8 @@ Once the module was correctly loaded, it would create four tables to store neces
 
 In order to display the LD matrix, this module would search for Pairwise LD score files in the drupal public dir (sites/default/files) with the gene_id as prefix and "LD" as suffix. So please make sure the related pairwise LD files were correctly prepared. The LD file should be tab-separated files with format below.
 
+ ```shell
+    # pairwise LD file format (no header)
     <variant1>   <variant2>    <LD_r2>
     # example:
     chr5.s_209839785        chr5.s_209839821        0.4060
@@ -27,3 +29,4 @@ In order to display the LD matrix, this module would search for Pairwise LD scor
     chr5.s_209839785        chr5.s_209839951        0.3547
     chr5.s_209839785        chr5.s_209840008        0.3304
     chr5.s_209839785        chr5.s_209840012        0.3487
+```
