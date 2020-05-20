@@ -1,0 +1,91 @@
+<?php
+
+require_once 'api/zmap_eqtlviz.api.inc';
+/**
+ * Implements hook_menu.
+ */
+function zmap_eqtlviz_menu()
+{
+    $items['eqtlviz'] = array(
+        'title' => t('ZEAMAP eQTL Visualization'),
+        'page callback' => 'zmap_eqtlviz_view',
+        'access arguments' => array('access content'),
+        'type' => MENU_NORMAL_ITEM,
+    );
+    $items['eqtlviz/ref/%/geneid/%'] = array(
+        'title' => t('ZEAMAP eQTL Visualization'),
+        'page callback' => 'zmap_eqtlviz_view',
+        'page arguments' => array(2, 4),
+        'access arguments' => array('access content'),
+        'type' => MENU_CALLBACK,
+    );
+    //api
+    $items['api/eqtlviz/tissue'] = array(
+        'title' => t('ZEAMAP eQTL Visualization'),
+        'page callback' => 'api_zmap_eqtlviz_retrive_tissue',
+        'access arguments' => array('access content'),
+        'type' => MENU_CALLBACK,
+    );
+    $items['api/eqtlviz/ref/%/geneid/%'] = array(
+        'title' => t('ZEAMAP eQTL Visualization'),
+        'page callback' => 'api_zmap_eqtlviz_retrive_gene',
+        'page arguments' => array(3, 5),
+        'access arguments' => array('access content'),
+        'type' => MENU_CALLBACK,
+    );
+    $items['api/eqtlviz/single_tissue_eqtl/ref/%/geneid/%'] = array(
+        'title' => t('ZEAMAP eQTL Visualization'),
+        'page callback' => 'api_zmap_eqtlviz_retrive_snp',
+        'page arguments' => array(4, 6),
+        'access arguments' => array('access content'),
+        'type' => MENU_CALLBACK,
+    );
+    $items['api/eqtlviz/ld/ref/%/geneid/%'] = array(
+        'title' => t('ZEAMAP eQTL Visualization'),
+        'page callback' => 'api_zmap_eqtlviz_retrive_ld',
+        'page arguments' => array(4, 6),
+        'access arguments' => array('access content'),
+        'type' => MENU_CALLBACK,
+    );
+
+    return $items;
+}
+
+/**
+ * Implements hook_theme.
+ */
+function zmap_eqtlviz_theme()
+{
+    $path = drupal_get_path('module', 'zmap_eqtlviz');
+    $theme = array(
+        'zmap_eqtlviz' => array(
+            'template' => 'zmap_eqtlviz',
+            'path' => "$path/theme",
+        ),
+    );
+
+    return $theme;
+}
+
+function zmap_eqtlviz_view($ref = 'b73', $geneid = 'Zm00001d037393')
+{
+    $path = drupal_get_path('module', 'zmap_eqtlviz');
+    //add css
+    drupal_add_css($path.'/theme/css/jquery-ui.css', array('group' => CSS_DEFAULT, 'every_page' => false));
+    drupal_add_css($path.'/theme/css/spinner.css', array('group' => CSS_DEFAULT, 'every_page' => false));
+    drupal_add_css($path.'/theme/css/plotviz.css', array('group' => CSS_DEFAULT, 'every_page' => false));
+    drupal_add_css($path.'/theme/css/gtexBubbleMap.css', array('group' => CSS_DEFAULT, 'every_page' => false));
+    drupal_add_css($path.'/theme/css/zmap_eqtlviz.css', array('group' => CSS_DEFAULT, 'every_page' => false));
+
+    //add js
+    drupal_add_js(array('zmap_eqtlviz' => array('ref' => $ref, 'geneid' => $geneid)), 'setting');
+    drupal_add_js($path.'/theme/js/jquery.min.js');
+    drupal_add_js($path.'/theme/js/bootstrap.min.js');
+    drupal_add_js($path.'/theme/js/jquery-ui.js');
+    drupal_add_js($path.'/theme/js/d3.min.js');
+    drupal_add_js($path.'/theme/js/plotviz.js');
+    drupal_add_js($path.'/theme/js/bubblemap.min.js');
+    drupal_add_js($path.'/theme/js/gtexBubbleMapDemo.js');
+
+    return theme('zmap_eqtlviz');
+}

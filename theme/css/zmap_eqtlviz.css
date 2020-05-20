@@ -1,0 +1,41 @@
+#tissueMenu {
+    color: green;
+    font-weight: 500;
+}
+
+.float{
+    float: left;
+    margin-right: 50px;
+}
+
+.filter {
+    width: 370px;
+    font-size: 12px;
+}
+
+.snpSearch {
+    font-size: 12px;
+}
+
+#pvalueSlider, #effectSizeSlider, #bbSnpSearch {
+    margin-top: 10px;
+}
+
+#tissueMenu {
+    width: 105px;
+    height: 30px;
+    line-height: 30px;
+    background-color: #850a94;
+    border-radius: 4px;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+}
+
+.desc {
+    font-size: 18px;
+}
+
+.xMarker {
+    font-size: 12px;
+}

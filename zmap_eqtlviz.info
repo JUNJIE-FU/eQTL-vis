@@ -1,0 +1,5 @@
+name = Zmap Eqtl Visualization
+description = Display Zmap Eqtl BubbleMap.
+project = zmap_eqtlviz
+package = Zmap
+core = 7.x

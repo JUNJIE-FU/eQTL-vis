@@ -1,0 +1,237 @@
+<?php
+
+/**
+ * Implements hook_schema.
+ */
+function zmap_eqtlviz_schema()
+{
+    $schema['zmap_eqtlviz_tissue'] = array(
+        'description' => 'the table used for store eqtl tissue info',
+        'fields' => array(
+            'dataset_id' => array(
+                'type' => 'varchar',
+                'length' => 32,
+            ),
+            'egene_count' => array(
+                'type' => 'int',
+            ),
+            'expressed_gene_count' => array(
+                'type' => 'int',
+            ),
+            'has_egenes' => array(
+                'type' => 'int',
+            ),
+            'rna_seq_and_genotype_sample_count' => array(
+                'type' => 'int',
+            ),
+            'rna_seq_sample_count' => array(
+                'type' => 'int',
+            ),
+            'tissue_site_detail_id' => array(
+                'type' => 'varchar',
+                'length' => 32,
+            ),
+        ),
+    );
+
+    $schema['zmap_eqtlviz_b73_gene'] = array(
+        'description' => 'The table used for store b73 eqtl gene info',
+        'fields' => array(
+            'gencodeId' => array(
+                'type' => 'varchar',
+                'length' => 32,
+            ),
+            'chromosome' => array(
+                'type' => 'varchar',
+                'length' => 16,
+            ),
+            'gstart' => array(
+                'type' => 'int',
+            ),
+            'gend' => array(
+                'type' => 'int',
+            ),
+            'strand' => array(
+                'type' => 'varchar',
+                'length' => 2,
+            ),
+            'tss' => array(
+                'type' => 'int',
+            ),
+            'geneSymbol' => array(
+                'type' => 'varchar',
+                'length' => 128,
+            ),
+            'geneSymbolUpper' => array(
+                'type' => 'varchar',
+                'length' => 128,
+            ),
+            'geneType' => array(
+                'type' => 'varchar',
+                'length' => 32,
+            ),
+            'description' => array(
+                'type' => 'varchar',
+                'length' => 128,
+            ),
+            'genomeBuild' => array(
+                'type' => 'varchar',
+                'length' => 8,
+            ),
+            'dataSource' => array(
+                'type' => 'varchar',
+                'length' => 16,
+            ),
+            'entrezGeneId' => array(
+                'type' => 'varchar',
+                'length' => 128,
+            ),
+            'gencodeVersion' => array(
+                'type' => 'varchar',
+                'length' => 8,
+            ),
+            'geneStatus' => array(
+                'type' => 'varchar',
+                'length' => 16,
+            ),
+        ),
+		// drupal schema will prefixes index name with table name.
+        'indexes' => array(
+            'gencodeid' => array(
+                'gencodeid',
+            ),
+        ),
+    );
+
+    $schema['zmap_eqtlviz_b73_snp'] = array(
+        'description' => 'The table used for store b73 eqtl snp data',
+        'fields' => array(
+            'gene' => array(
+                'type' => 'varchar',
+                'length' => 32,
+            ),
+            'snpid' => array(
+                'type' => 'varchar',
+                'length' => 32,
+            ),
+            'beta' => array(
+                'type' => 'float',
+                'size' => 'normal',
+            ),
+            'pvalue' => array(
+                'type' => 'float',
+                'size' => 'big',
+            ),
+        ),
+        'indexes' => array(
+            'gene' => array(
+                'gene',
+            ),
+        ),
+    );
+
+    $schema['zmap_eqtlviz_sk_gene'] = array(
+        'description' => 'The table used for store sk eqtl gene info',
+        'fields' => array(
+            'gencodeId' => array(
+                'type' => 'varchar',
+                'length' => 32,
+            ),
+            'chromosome' => array(
+                'type' => 'varchar',
+                'length' => 16,
+            ),
+            'gstart' => array(
+                'type' => 'int',
+            ),
+            'gend' => array(
+                'type' => 'int',
+            ),
+            'strand' => array(
+                'type' => 'varchar',
+                'length' => 2,
+            ),
+            'tss' => array(
+                'type' => 'int',
+            ),
+            'geneSymbol' => array(
+                'type' => 'varchar',
+                'length' => 128,
+            ),
+            'geneSymbolUpper' => array(
+                'type' => 'varchar',
+                'length' => 128,
+            ),
+            'geneType' => array(
+                'type' => 'varchar',
+                'length' => 32,
+            ),
+            'description' => array(
+                'type' => 'varchar',
+                'length' => 128,
+            ),
+            'genomeBuild' => array(
+                'type' => 'varchar',
+                'length' => 8,
+            ),
+            'dataSource' => array(
+                'type' => 'varchar',
+                'length' => 16,
+            ),
+            'entrezGeneId' => array(
+                'type' => 'varchar',
+                'length' => 128,
+            ),
+            'gencodeVersion' => array(
+                'type' => 'varchar',
+                'length' => 8,
+            ),
+            'geneStatus' => array(
+                'type' => 'varchar',
+                'length' => 16,
+            ),
+        ),
+        'indexes' => array(
+            'gencodeid' => array(
+                'gencodeid',
+            ),
+        ),
+    );
+
+    $schema['zmap_eqtlviz_sk_snp'] = array(
+        'description' => 'The table used for store sk eqtl snp data',
+        'fields' => array(
+            'gene' => array(
+                'type' => 'varchar',
+                'length' => 32,
+            ),
+            'snpid' => array(
+                'type' => 'varchar',
+                'length' => 32,
+            ),
+            'beta' => array(
+                'type' => 'float',
+                'size' => 'normal',
+            ),
+            'pvalue' => array(
+                'type' => 'float',
+                'size' => 'big',
+            ),
+        ),
+        'indexes' => array(
+            'gene' => array(
+                'gene',
+            ),
+        ),
+    );
+
+    return $schema;
+}
+
+/**
+ * Implements hook_uninstall.
+ */
+function zmap_eqtlviz_uninstall()
+{
+    drupal_uninstall_schema('zmap_eqtlviz');
+}
